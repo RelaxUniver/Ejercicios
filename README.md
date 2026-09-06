@@ -98,10 +98,25 @@ No modifica la lista.
 
 ---
 
+Buscar tabla Inc-c.csv.
+
+---
+
 ### d) Identificar invariantes del TDA Lista
+
+- La longitud siempre coinciden con la cantidad real de elementos q hay en ese momento.
+- Los elementos siempre ocupan posiciones consecutivas, lo q permite q no exista huecos vacios en la lista.
+- Las operaciones como Obtener, Longitud y Vacía no modifican la lista.
 
 ---
 
 ### e) Separar abstracción de implementación
+
+---
+
+El TDA Lista describe de forma abstracta las operaciones y sus contratos:
+qué condiciones deben cumplirse, qué valores devuelven y qué efecto
+producen sobre la lista. La implementación concreta define cómo se construye internamente esa
+lista, por ejemplo usando una lista secuencial o una lista enlazada.
 
 ---
