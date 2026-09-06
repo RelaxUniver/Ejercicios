@@ -1,0 +1,11 @@
+﻿Número,Operación,¿Es válida?,Lista antes,Lista después,Valor devuelto,Observación
+1,Vacía(),Sí,[],[],true,La lista está vacía
+2,"Insertar(""T-101"", 0)",Sí,[],"[""T-101""]",—,Se inserta en la posición 0
+3,"Insertar(""T-202"", 1)",Sí,"[""T-101""]","[""T-101"", ""T-202""]",—,Se inserta al final
+4,"Insertar(""T-305"", 1)",Sí,"[""T-101"", ""T-202""]","[""T-101"", ""T-305"", ""T-202""]",—,Se inserta en el medio; """T-202""" se desplaza a la posición 2
+5,Obtener(2),Sí,"[""T-101"", ""T-305"", ""T-202""]","[""T-101"", ""T-305"", ""T-202""]","""T-202""",La lista no se modifica
+6,Eliminar(0),Sí,"[""T-101"", ""T-305"", ""T-202""]","[""T-305"", ""T-202""]",—,Se elimina """T-101"""; los elementos restantes se desplazan hacia posiciones menores
+7,"Insertar(""T-410"", 2)",Sí,"[""T-305"", ""T-202""]","[""T-305"", ""T-202"", ""T-410""]",—,Se inserta al final
+8,"Insertar(""T-999"", 5)",No,"[""T-305"", ""T-202"", ""T-410""]","[""T-305"", ""T-202"", ""T-410""]",—,"Posición inválida: con longitud 3, solo se puede insertar hasta la posición 3"
+9,Eliminar(10),No,"[""T-305"", ""T-202"", ""T-410""]","[""T-305"", ""T-202"", ""T-410""]",—,"Posición inválida: con longitud 3, solo se puede eliminar en las posiciones 0, 1 o 2"
+10,Longitud(),Sí,"[""T-305"", ""T-202"", ""T-410""]","[""T-305"", ""T-202"", ""T-410""]",3,Las operaciones inválidas no modificaron la lista
