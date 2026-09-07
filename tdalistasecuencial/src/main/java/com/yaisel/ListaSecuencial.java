@@ -36,8 +36,15 @@ public class ListaSecuencial<T> implements TDALista<T> {
 
     @Override
     public void eliminar(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        if (((0 <= i) && (i < this.longitud))) {
+            array[i] = null;
+            for (int j = i; j<longitud; j++) {
+                if (j < longitud-1) {
+                    array[j] = array[j+1];
+                }
+            }
+            longitud--;
+        }
     }
 
     @Override
