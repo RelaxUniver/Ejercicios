@@ -26,4 +26,9 @@ public class Tarea {
         this.prioridad = prioridad;
     }
     
+    @Override
+    public String toString() {
+        return getTarea() + " - " + getPrioridad();
+    }
+
 }

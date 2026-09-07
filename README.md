@@ -120,3 +120,18 @@ producen sobre la lista. La implementación concreta define cómo se construye i
 lista, por ejemplo usando una lista secuencial o una lista enlazada.
 
 ---
+
+El ingeniero entrega la siguiente secuencia de operaciones solicitadas por el cliente:
+
+```text
+1. Vacía()
+2. Insertar("T-101", 0)
+3. Insertar("T-202", 1)
+4. Insertar("T-305", 1)
+5. Obtener(2)
+6. Eliminar(0)
+7. Insertar("T-410", 2)
+8. Insertar("T-999", 5)
+9. Eliminar(10)
+10. Longitud()
+```
