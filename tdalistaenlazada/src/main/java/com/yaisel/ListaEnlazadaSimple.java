@@ -60,9 +60,20 @@ public class ListaEnlazadaSimple<T> {
     }
 
     
-    public T obtener(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtener'");
+    public T obtener(int posicion) {
+        if (posicion < 0 || posicion >= this.cantidad) {
+            throw new IndexOutOfBoundsException("La posición no es valida.");
+        }
+
+        if (posicion == 0) {
+            return this.cabeza.getDato();
+        }
+
+        Nodo<T> actual = this.cabeza;
+        for (int i = 0; i<posicion; i++) {
+            actual = actual.getNext();
+        }
+        return actual.getDato();
     }
 
     
