@@ -1,4 +1,4 @@
-package main.java.com.yaisel;
+package com.yaisel;
 
 import com.yaisel.ListaSecuencial;
 import com.yaisel.TDALista;
