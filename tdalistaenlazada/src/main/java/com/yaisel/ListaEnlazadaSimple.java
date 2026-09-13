@@ -2,16 +2,14 @@ package com.yaisel;
 
 public class ListaEnlazadaSimple<T> {
 
-    private Nodo<T> cabeza = null;
+    private Nodo<T> primero = null;
     private int cantidad = 0;
 
-    public ListaEnlazadaSimple(Nodo<T> cabeza, int cantidad) {
-        this.cabeza = cabeza;
-        this.cantidad = cantidad;
+    public ListaEnlazadaSimple() {
     }
 
-    public Nodo<T> getYo() {
-        return cabeza;
+    public Nodo<T> getPrimero() {
+        return primero;
     }
 
 
@@ -23,7 +21,7 @@ public class ListaEnlazadaSimple<T> {
 
 
     public void setYo(Nodo<T> yo) {
-        this.cabeza = yo;
+        this.primero = yo;
     }
 
 
@@ -40,13 +38,13 @@ public class ListaEnlazadaSimple<T> {
 
         if (posicion == 0) {
             Nodo<T> nuevo = new Nodo<>(dato);
-            nuevo.setNext(this.cabeza);
-            this.cabeza = nuevo;
+            nuevo.setNext(this.primero);
+            this.primero = nuevo;
             cantidad++;
             return;
         }
 
-        Nodo<T> actual = this.cabeza;
+        Nodo<T> actual = this.primero;
         
         for (int i = 0; i<posicion - 1; i++) {
             actual = actual.getNext();
@@ -66,10 +64,10 @@ public class ListaEnlazadaSimple<T> {
         }
 
         if (posicion == 0) {
-            return this.cabeza.getDato();
+            return this.primero.getDato();
         }
 
-        Nodo<T> actual = this.cabeza;
+        Nodo<T> actual = this.primero;
         for (int i = 0; i<posicion; i++) {
             actual = actual.getNext();
         }
@@ -77,21 +75,33 @@ public class ListaEnlazadaSimple<T> {
     }
 
     
-    public void eliminar(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+    public void eliminar(int posicion) {
+        if (posicion < 0 || posicion >= this.cantidad) {
+            throw new IndexOutOfBoundsException("La posición no es valida.");
+        }
+        if(posicion == 0) {
+            this.primero = this.primero.getNext();
+            cantidad--;
+            return;
+        }
+
+        Nodo<T> actual = this.primero;
+        for (int i = 0; i<posicion-1; i++) {
+            actual = actual.getNext();
+        }
+
+        actual.setNext(actual.getNext().getNext());
+        cantidad--;
     }
 
     
     public int longitud() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'longitud'");
+        return this.cantidad;
     }
 
     
-    public void vacia() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'vacia'");
+    public boolean vacia() {
+        return this.cantidad==0;
     }
 
 
