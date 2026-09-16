@@ -91,7 +91,7 @@ public class ListaEnlazadaSimple<T> {
         }
 
         actual.setNext(actual.getNext().getNext());
-        cantidad--;
+        cantidad--; 
     }
 
     
