@@ -196,7 +196,6 @@ Ahora te explicare el proceso de cada metodo:
     Si la posición q se nos pide no es 0. Entonces recorremos desde el 'primero' hasta la posición-1. Cuando llegamos a ese lugar, lo q haremos es: 
     actual.siguiente = actual.siguiente.siguiente; 
     y disminuimos la cantidad.
-
-    - La longitud la podemos obtener con el atributo cantidad. 
-    - Y revisar si está vacia, simplemente comprobamos si la cantidad == 0;
-
+    
+  - La longitud la podemos obtener con el atributo cantidad. 
+  - Y revisar si está vacia, simplemente comprobamos si la cantidad == 0;
