@@ -24,5 +24,11 @@ public class Nodo<T> {
     public void setNext(Nodo<T> next) {
         this.next = next;
     } 
+
+    @Override
+    public String toString() {
+        String s = ""+this.dato;
+        return s;
+    }
     
 } 

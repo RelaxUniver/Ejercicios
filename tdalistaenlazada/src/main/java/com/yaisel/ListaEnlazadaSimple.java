@@ -104,8 +104,4 @@ public class ListaEnlazadaSimple<T> {
         return this.cantidad==0;
     }
 
-
-
-    
-
 }
