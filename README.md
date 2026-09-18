@@ -21,7 +21,7 @@ Un laboratorio de mantenimiento de equipos electrónicos necesita registrar las 
 
 ---
 
-Insertar(x, i)
+Insertar(T object, int i)
 
 Condición q se debe cumplir:
 0 <= i <= longitud
@@ -35,7 +35,7 @@ La longitud aumenta en 1.
 
 ---
 
-Obtener(i)
+Obtener(int i)
 
 Condición q se debe cumplir:
 0 <= i < longitud
@@ -47,7 +47,7 @@ y ningún elemento se desplaza.
 
 ---
 
-Eliminar(i)
+Eliminar(int i)
 
 Condición q se debe cumplir:
 0 <= i < longitud
@@ -137,65 +137,97 @@ El ingeniero entrega la siguiente secuencia de operaciones solicitadas por el cl
 ```
 
 # Explicación del Ejercicio 2:
-En el ejercicio número 2, se necesita 2 Class, la primera va a contener los nodos, y la segunda los metodos q se van a utilizar para modificar los nodos, obtener un dato o información, también se necesitara marcar el nodo q va a ser la cabeza(Es decir el nodo primero) y la cantidad de nodos q hay. 
+En el ejercicio número 2, se necesita la class Nodo y la class ListaEnlazadaSimple, la class Nodo va a contener la información, y la segunda los metodos q se van a utilizar para modificar los nodos, obtener un dato o información, también se necesitara marcar el nodo q va a ser la cabeza(Es decir el nodo primero) y la cantidad de nodos q hay.
+
 Ejemplo: 
+
+```
 class Nodo {
     atributo 1: Es el dato q quieras guardar
     atributo 2: Es el nodo siguiente q esta conectado
 }
-Ejemplo Visual:
-N1 -> N2 -> N3 -> null
-Ahora N1 tiene un dato q es su primer atributo y en el segundo atributo está el nodo al q apunta:
-N1 apunta a -> N2;  N2 apunta a -> N3 y N3 apunta a -> null; cada Nodo q se cree sin especificar su nodo siguiente se pondra null.
+```
 
-En la segunda Class se pondra los metodos q se utilizaran, más 2 atributos:
+Ejemplo Visual:
+
+```
+N1 -> N2 -> N3 -> null
+```
+Ahora N1 tiene un dato q es su primer atributo y en el segundo atributo está el nodo al q apunta:
+```txt 
+N1 apunta a -> N2;  N2 apunta a -> N3 y N3 apunta a -> null; cada Nodo q se cree sin especificar su nodo siguiente será null.
+```
+
+En la **class ListaEnlazadaSimple** se pondra los metodos q se utilizaran, más 2 atributos:
 
 Ejemplo:
+
+```
 class ListaEnlazadaSimple {
     atributo 1 : Es el primer nodo donde inicia la ListaEnlazada
     atributo 2 : Es la cantidad de nodos q hay
 
-   -> Y aquí van todos los Metodos...  q vas a diseñar para modificar o obtener alguna información de algunos de los nodos. 
+   Metodos...
 }
+```
 
 Ahora te explicare el proceso de cada metodo:
 
 - Insertar
-  Lo primero q debemos recibir es la posición y el dato q se desea insertar:
-  Tenemos P3 -> P1 -> P2 -> P20 -> P0 -> null
-  Y queremos insertar P7
-  Dato: P7
-  Ahora necesitaremos una posición donde se desea insertar el dato:
-  La posición no puede ser menor q 0 ni mayor q la cantidad existente
-  Si la posción es 0 se pone al inicio y se selecciona el nuevo dato como nuevo 'primero'
-  Ejemplo:
+  
+  Lo primero q debemos recibir es la posición y el dato q se desea insertar tenemos 
+  ```
+  P3 -> P1 -> P2 -> P20 -> P0 -> null
+  ```
+
+  El dato que queremos insertar es P7. También necesitaremos una posición donde se desea insertar que no sea menor q 0 ni mayor q la cantidad existente. Si la posción es 0 se pone al inicio y se selecciona el nuevo dato como nuevo 'primero'
+
+  **Ejemplo:**
+  ```
   nuevo = dato q se desea ingresar
   nuevo.siguiente = primero
   primero = nuevo
-  Después de ese proceso sumamos para tener un conteo de la cantidad de nodos q hay y detenemos y detenemos el metodo. Ahora llegado el caso donde la posición sea mayor q 0 pero q no supere a la cantidad existente.
-  Buscaremos con un for la posición anterior a esa posición, una vez encontrada haremos el siguiente procedimiento:
+  cantidad++
+  ```
+  Ahora llegado el caso donde la posición sea mayor q 0 pero q no supere a la cantidad existente buscaremos con un for la posición anterior a esa posición, una vez encontrada haremos el siguiente procedimiento:
+  ```
   nuevo = al dato q se va a introducir 
   nuevo.siguiente = va a guardar actual.seguiente
   actual.siguiente = nuevo
+  cantidad++
+  ```
   Ejemplo:
-  nuevo = al dato q se va a introducir 
-  nuevo dato P7 -> null
-  nuevo.siguiente = actual.seguiente
-  (P7-nuevo) -> null
-  P3 -> P1 -> P2 -> P20 -> (P0-actual) -> null
-  actual.siguiente = nuevo
-  P3 -> P1 -> P2 -> P20 -> P0 -> P7 - null
-  y se vuelve a sumar la cantidad.
 
-  - Para obtener el valor q se nos pide en la ListaEnlazada, vamos a verificar primero q la posición q nos da sea correcto. Después si la posición q nos pide es 0 devolveremos el nodo primero q tenemos q es un atributo de la class. Sino es, lo q haremos es recorrer los nodos uno por uno hasta llegar a la posición y devolvemos el valor.
+  nuevo = P7
+
+  ```
+  (P7-nuevo) -> null
+  ```
+
+  nuevo.siguiente = actual.seguiente
   
-  - Para eliminar un valor la posición no puede superar a la cantidad ni ser igual, ni menor a 
-    Si la posición es 0, entonces la forma de eliminar es la siguiente:
-    primero = primero.siguiente.  
-    Después de eso disminuiremos la cantidad--. 
+  ```
+  P3 -> P1 -> P2 -> P20 -> (P0-actual) -> null
+  ```
+  actual.siguiente = nuevo
+  ```
+  P3 -> P1 -> P2 -> P20 -> P0 -> P7 - null
+  ```
+  cantidad++
+
+  - Para obtener el valor q se nos pide en la ListaEnlazadaSimple, vamos a verificar primero q la posición q nos da sea correcto. Después si la posición q nos pide es 0 devolveremos el nodo primero q tenemos q es un atributo de la class. Sino es, lo q haremos es recorrer los nodos uno por uno hasta llegar a la posición y devolvemos el valor.
+  
+  - Para eliminar un valor la posición no puede superar a la cantidad ni ser igual, ni menor a 0. Si la posición es 0, entonces la forma de eliminar es la siguiente:
+
+    ```
+    primero = primero.siguiente. 
+    cantidad --
+    ```
     Si la posición q se nos pide no es 0. Entonces recorremos desde el 'primero' hasta la posición-1. Cuando llegamos a ese lugar, lo q haremos es: 
+    ```
     actual.siguiente = actual.siguiente.siguiente; 
-    y disminuimos la cantidad.
+    cantidad--
+    ```
     
   - La longitud la podemos obtener con el atributo cantidad. 
   - Y revisar si está vacia, simplemente comprobamos si la cantidad == 0;
