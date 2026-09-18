@@ -137,7 +137,7 @@ El ingeniero entrega la siguiente secuencia de operaciones solicitadas por el cl
 ```
 
 # Explicación del Ejercicio 2:
-En el ejercicio número 2, se necesita la class Nodo y la class ListaEnlazadaSimple, la class Nodo va a contener la información, y la segunda los metodos q se van a utilizar para modificar los nodos, obtener un dato o información, también se necesitara marcar el nodo q va a ser la cabeza(Es decir el nodo primero) y la cantidad de nodos q hay.
+En el ejercicio número 2, se necesita la class Nodo y la class ListaEnlazadaSimple, la class Nodo va a contener la información, y la segunda contendrá los metodos q se van a utilizar para modificar los nodo o obtener una información, también se necesitara marcar el nodo q va a ser la cabeza(Es decir el nodo primero) y la cantidad de nodos q hay.
 
 Ejemplo: 
 
