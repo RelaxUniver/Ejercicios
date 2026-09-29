@@ -1,233 +1,443 @@
+actual = nodo_primero
+buscar = actual.siguiente
+anterior = actual
 
-## Contexto narrativo
+[a->actual->anterior] => [b->buscar] => [c] => [d] => [b] => null
 
-Un laboratorio de mantenimiento de equipos electrónicos necesita registrar las tareas pendientes del día. El ingeniero jefe quiere que el sistema mantenga las tareas en una lista lineal ordenada según la posición en la que se insertan. El equipo de desarrollo está diseñando primero el **TDA Lista**, antes de decidir si la implementación final usará una lista secuencial o una lista enlazada. Las tareas tienen un código, por ejemplo `"T-101"`, y una prioridad. Sin embargo, por ahora la prioridad no se usa para ordenar automáticamente la lista. La lista solo respeta la posición donde se inserta cada elemento. Además, el cliente menciona que cada tarea tiene prioridad alta, media o baja, pero esa información no forma parte del comportamiento básico del TDA Lista que se está modelando.
+**ITERACIÓN 1**
 
----
+CICLO(true) {
 
-## Consignas del ejercicio
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
 
-### a) Definir el TDA Lista
+<\<si>>
 
-**Mi Respuesta:**
+anterior.siguiente = buscar.siguiente
 
-    El TDA Lista es un conjunto ordenado de elementos donde se pueden guardar elementos en una posición elegida y válida. Está organizada de forma lineal, donde cada elemento respeta la posición donde se ha decidido insertar. Lo que identifica a cada elemento respecto a los demás es el índice donde fue colocado. Las operaciones que permite son: insertar un nuevo elemento, obtener un elemento por su posición, eliminar un elemento por su posición, contar la cantidad de elementos y consultar si la lista está vacía.
+(new) avance = buscar.siguiente
 
----
+buscar.siguiente = null
 
-### b) Escribir el contrato de cada operación
+buscar = avance
 
-**Mi Respuesta:**
+<\<no>>
 
----
+buscar = buscar.siguiente
 
-Insertar(T object, int i)
+anterior = anterior.siguiente
 
-Condición q se debe cumplir:
-0 <= i <= longitud
-longitud < capacidad
+[a->actual] => [b->anterior] => [c->buscar] => [d] => [b] => null
 
-Postcondición:
-El elemento x queda en la posición i.
-Los elementos que estaban desde la posición i en adelante
-se desplazan una posición hacia adelante.
-La longitud aumenta en 1.
-
----
-
-Obtener(int i)
-
-Condición q se debe cumplir:
-0 <= i < longitud
-
-Postcondición:
-Devuelve el valor que está en la posición i.
-No modifica la lista: la longitud no cambia
-y ningún elemento se desplaza.
-
----
-
-Eliminar(int i)
-
-Condición q se debe cumplir:
-0 <= i < longitud
-
-Postcondición:
-Se elimina el elemento que está en la posición i.
-Los elementos que estaban después de la posición i, si los hay,
-se desplazan una posición hacia índices menores.
-Si i == longitud - 1, no se desplaza ningún elemento.
-La longitud disminuye en 1:
-longitud = longitud - 1
-No devuelve ningún valor.
-
----
-
-Longitud()
-
-Condición q se debe cumplir:
-Ninguna.
-
-Postcondición:
-Devuelve la cantidad actual de elementos de la lista.
-No modifica la lista.
-
----
-
-Vacía()
-
-Descripción:
-Consulta si la lista no tiene elementos.
-
-Parámetros:
-No recibe ningún parámetro.
-
-Precondición:
-Ninguna.
-
-Devuelve:
-true si longitud == 0.
-false si longitud > 0.
-
-Postcondición:
-No modifica la lista.
-
----
-
-### c) Completar una tabla de trazado manual
-
----
-
-Buscar tabla Inc-c.csv.
-
----
-
-### d) Identificar invariantes del TDA Lista
-
-- La longitud siempre coinciden con la cantidad real de elementos q hay en ese momento.
-- Los elementos siempre ocupan posiciones consecutivas, lo q permite q no exista huecos vacios en la lista.
-- Las operaciones como Obtener, Longitud y Vacía no modifican la lista.
-
----
-
-### e) Separar abstracción de implementación
-
----
-
-El TDA Lista describe de forma abstracta las operaciones y sus contratos:
-qué condiciones deben cumplirse, qué valores devuelven y qué efecto
-producen sobre la lista. La implementación concreta define cómo se construye internamente esa
-lista, por ejemplo usando una lista secuencial o una lista enlazada.
- 
----
-
-El ingeniero entrega la siguiente secuencia de operaciones solicitadas por el cliente:
-
-```text
-1. Vacía()
-2. Insertar("T-101", 0)
-3. Insertar("T-202", 1)
-4. Insertar("T-305", 1)
-5. Obtener(2)
-6. Eliminar(0)
-7. Insertar("T-410", 2)
-8. Insertar("T-999", 5)
-9. Eliminar(10)
-10. Longitud()
-```
-
-# Explicación del Ejercicio 2:
-En el ejercicio número 2, se necesita la class Nodo y la class ListaEnlazadaSimple, la class Nodo va a contener la información, y la segunda los metodos q se van a utilizar para modificar los nodos, obtener un dato o información, también se necesitara marcar el nodo q va a ser la cabeza(Es decir el nodo primero) y la cantidad de nodos q hay.
-
-Ejemplo: 
-
-```
-class Nodo {
-    atributo 1: Es el dato q quieras guardar
-    atributo 2: Es el nodo siguiente q esta conectado
 }
-```
 
-Ejemplo Visual:
+SI (buscar == null) ENTONCES {
 
-```
-N1 -> N2 -> N3 -> null
-```
-Ahora N1 tiene un dato q es su primer atributo y en el segundo atributo está el nodo al q apunta:
-```txt 
-N1 apunta a -> N2;  N2 apunta a -> N3 y N3 apunta a -> null; cada Nodo q se cree sin especificar su nodo siguiente será null.
-```
+<\<si>>
 
-En la **class ListaEnlazadaSimple** se pondra los metodos q se utilizaran, más 2 atributos:
+actual = actual.siguiente
 
-Ejemplo:
+SI (actual == null) ENTONCES {
 
-```
-class ListaEnlazadaSimple {
-    atributo 1 : Es el primer nodo donde inicia la ListaEnlazada
-    atributo 2 : Es la cantidad de nodos q hay
+<\<si>>
 
-   Metodos...
+ROMPER CICLO
+
 }
-```
 
-Ahora te explicare el proceso de cada metodo:
+<\<no>>
 
-- Insertar
-  
-  Lo primero q debemos recibir es la posición y el dato q se desea insertar tenemos 
-  ```
-  P3 -> P1 -> P2 -> P20 -> P0 -> null
-  ```
+buscar = actual.siguiente
 
-  El dato que queremos insertar es P7. También necesitaremos una posición donde se desea insertar que no sea menor q 0 ni mayor q la cantidad existente. Si la posción es 0 se pone al inicio y se selecciona el nuevo dato como nuevo 'primero'
+anterior = actual
 
-  **Ejemplo:**
-  ```
-  nuevo = dato q se desea ingresar
-  nuevo.siguiente = primero
-  primero = nuevo
-  cantidad++
-  ```
-  Ahora llegado el caso donde la posición sea mayor q 0 pero q no supere a la cantidad existente buscaremos con un for la posición anterior a esa posición, una vez encontrada haremos el siguiente procedimiento:
-  ```
-  nuevo = al dato q se va a introducir 
-  nuevo.siguiente = va a guardar actual.seguiente
-  actual.siguiente = nuevo
-  cantidad++
-  ```
-  Ejemplo:
+}
 
-  nuevo = P7
+}
 
-  ```
-  (P7-nuevo) -> null
-  ```
 
-  nuevo.siguiente = actual.seguiente
-  
-  ```
-  P3 -> P1 -> P2 -> P20 -> (P0-actual) -> null
-  ```
-  actual.siguiente = nuevo
-  ```
-  P3 -> P1 -> P2 -> P20 -> P0 -> P7 - null
-  ```
-  cantidad++
+**ITERACIÓN 2**
 
-  - Para obtener el valor q se nos pide en la ListaEnlazadaSimple, vamos a verificar primero q la posición q nos da sea correcto. Después si la posición q nos pide es 0 devolveremos el nodo primero q tenemos q es un atributo de la class. Sino es, lo q haremos es recorrer los nodos uno por uno hasta llegar a la posición y devolvemos el valor.
-  
-  - Para eliminar un valor la posición no puede superar a la cantidad ni ser igual, ni menor a 0. Si la posición es 0, entonces la forma de eliminar es la siguiente:
+CICLO(true) {
 
-    ```
-    primero = primero.siguiente. 
-    cantidad --
-    ```
-    Si la posición q se nos pide no es 0. Entonces recorremos desde el 'primero' hasta la posición-1. Cuando llegamos a ese lugar, lo q haremos es: 
-    ```
-    actual.siguiente = actual.siguiente.siguiente; 
-    cantidad--
-    ```
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+
+(new) avance = buscar.siguiente
+
+buscar.siguiente = null
+
+buscar = avance
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+[a->actual] => [b] => [c->anterior] => [d->buscar] => [b] => null
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
+
+actual = actual.siguiente
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+ROMPER CICLO
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+
+anterior = actual
+
+}
+
+}
+
+**ITERACIÓN 3**
+
+CICLO(true) {
+
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+
+(new) avance = buscar.siguiente
+
+buscar.siguiente = null
+
+buscar = avance
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+[a->actual] => [b] => [c] => [d->anterior] => [b->buscar] => null
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
     
-  - La longitud la podemos obtener con el atributo cantidad. 
-  - Y revisar si está vacia, simplemente comprobamos si la cantidad == 0;
+actual = actual.siguiente
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+ROMPER CICLO
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+
+anterior = actual
+
+}
+
+}
+
+**ITERACIÓN 4**
+
+CICLO(true) {
+
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+
+(new) avance = buscar.siguiente
+
+buscar.siguiente = null
+
+buscar = avance
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+[a->actual] => [b] => [c] => [d] => [b->anterior] => null->buscar
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<<si>>
+    
+actual = actual.siguiente
+    
+[a] => [b->actual] => [c] => [d] => [b->anterior] => null->buscar
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+ROMPER CICLO
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+
+anterior = actual
+
+[a] => [b->actual->anterior] => [c->buscar] => [d] => [b] => null
+
+}
+
+}
+
+**ITERACIÓN 5**
+
+CICLO(true) {
+
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+
+(new) avance = buscar.siguiente
+
+buscar.siguiente = null
+
+buscar = avance
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+[a] => [b->actual] => [c->anterior] => [d->buscar] => [b] => null
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
+
+actual = actual.siguiente
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+ROMPER CICLO
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+
+anterior = actual
+
+}
+
+}
+
+**ITERACIÓN 6**
+
+CICLO(true) {
+    
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+
+(new) avance = buscar.siguiente
+
+buscar.siguiente = null
+
+buscar = avance
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+[a] => [b->actual] => [c] => [d->anterior] => [b->buscar] => null
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
+
+actual = actual.siguiente
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+ROMPER CICLO
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+
+anterior = actual
+
+}
+
+}
+
+**ITERACIÓN 7**
+
+CICLO(true) {
+
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+    
+[a] => [b->actual] => [c] => [d->anterior] => null
+
+(new) avance = buscar.siguiente
+
+[a] => [b->actual] => [c] => [d->anterior] => null->avance
+
+buscar.siguiente = null
+
+[b->buscar] => null
+
+buscar = avance
+
+[a] => [b->actual] => [c] => [d->anterior] => null->avance->buscar
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
+
+actual = actual.siguiente
+
+[a] => [b] => [c->actual] => [d->anterior] => null->buscar
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+ROMPER CICLO
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+    
+anterior = actual
+
+[a] => [b] => [c->actual->anterior] => [d->buscar] => null
+
+}
+
+}
+
+ESTE PROCESO SE REPITE...
+
+**ITERACIÓN X**
+
+CICLO(true) {
+    
+SI(buscar != null Y actual.dato == buscar.dato) ENTONCES {
+
+<\<si>>
+
+anterior.siguiente = buscar.siguiente
+
+(new) avance = buscar.siguiente
+
+buscar.siguiente = null
+
+buscar = avance
+
+<\<no>>
+
+buscar = buscar.siguiente
+
+anterior = anterior.siguiente
+
+}
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
+
+actual = actual.siguiente
+
+[a] => [b] => [c] => [d->anterior] => null->buscar->actual
+
+SI (actual == null) ENTONCES {
+
+<\<si>>
+
+**ROMPER CICLO**
+
+}
+
+<\<no>>
+
+buscar = actual.siguiente
+
+anterior = actual
+
+}
+
+}
+
+**CASOS BORDE**
+
+SI (actual == null) ENTONCES {
+
+NO SE PUEDE TRABAJAR CON UN NODO null
+
+}
+
+actual = nodo_primero
+buscar = actual.siguiente
+anterior = actual
+
+[a->actual->anterior] => null-buscar
+
+SI (buscar == null) ENTONCES {
+
+<\<si>>
+NO HAY INF REPETIDA, NO HACER CICLO
+
+}
