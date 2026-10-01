@@ -12,6 +12,22 @@ public class SimpleList {
         this.cantidad = 0;
     }
 
+    public Node getInicio() {
+        return inicio;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setInicio(Node inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     public void eliminarDuplicados() {
 
         Node actual = this.inicio;
@@ -54,7 +70,7 @@ public class SimpleList {
 
     }
 
-    public void rotarUnElementoDerecha () {
+    public void rotarElUltimoElemento () {
         try {
             if (this.inicio == null) {
                 throw new NullPointerException("La lista esta vacia.");
@@ -81,6 +97,25 @@ public class SimpleList {
             }
         }
         this.inicio = ultimo;
+    }
+
+        public void concatenarLista(SimpleList lista) {
+        if (lista == null || lista.getInicio() == null) {
+            return;
+        }
+        if (this.inicio == null) {
+            this.inicio = lista.getInicio();
+            return;
+        }
+        Node actual = this.inicio;
+        while (true) {
+            if(actual.getNext() != null) {
+                actual = actual.getNext();
+            } else {
+                actual.setNext(lista.getInicio());
+                break;
+            }
+        }
     }
 
 }
