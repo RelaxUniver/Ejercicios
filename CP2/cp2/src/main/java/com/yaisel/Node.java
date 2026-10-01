@@ -1,4 +1,4 @@
-package main.java.com.yaisel;
+package com.yaisel;
 
 public class Node {
     

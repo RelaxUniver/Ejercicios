@@ -1,7 +1,5 @@
 package com.yaisel;
 
-import main.java.com.yaisel.Node;
-
 public class SimpleList {
 
     private Node inicio;
